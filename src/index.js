@@ -1,6 +1,4 @@
 import React from 'react'
-import styles from './styles.module.css'
+import StyledFormInput from './components/FormInput/FormInput'
 
-export const ExampleComponent = ({ text }) => {
-  return <div className={styles.test}>Example Component: {text}</div>
-}
+export const Input = (props) => <StyledFormInput {...props} />

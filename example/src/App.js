@@ -1,10 +1,18 @@
-import React from 'react'
-
-import { ExampleComponent } from 'cool-react-components'
-import 'cool-react-components/dist/index.css'
+import React, { useState } from 'react'
+import { Input } from 'cool-react-components'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  const [email, setEmail] = useState('')
+  return (
+    <div style={{ textAlign: 'center', background: '#2F3336' }}>
+      <Input
+        type='text'
+        value={email}
+        onChange={({ target: { value } }) => setEmail(value)}
+      />
+      <Input type='submit' disabled={email === ''} />
+    </div>
+  )
 }
 
 export default App
