@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components';
 
 const StyledFormInput = styled.input(
   () => css`
@@ -48,6 +48,6 @@ const StyledFormInput = styled.input(
       display: flex;
     }
   `
-)
+);
 
-export default StyledFormInput
+export default StyledFormInput;

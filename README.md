@@ -1,8 +1,8 @@
 # cool-react-components
 
-> React UI Components to ease coding time.
+> This is a FUTURE React UI Components library, to ease coding time. But is in progress !!!
 
-[![NPM](https://img.shields.io/npm/v/cool-react-components.svg)](https://www.npmjs.com/package/cool-react-components) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+<!-- [![NPM](https://img.shields.io/npm/v/cool-react-components.svg)](https://www.npmjs.com/package/cool-react-components) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
@@ -23,7 +23,7 @@ class Example extends Component {
     return <MyComponent />
   }
 }
-```
+``` -->
 
 ## License
 
