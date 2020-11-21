@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 const StyledFormInput = styled.input(
-  () => css`
+  ({ styledComponents }) => css`
     padding: 15px 20px;
     text-align: center;
     font: 18px inherit;
@@ -47,6 +47,8 @@ const StyledFormInput = styled.input(
     @media only screen and (max-width: 700px) {
       display: flex;
     }
+
+    ${styledComponents};
   `
 );
 

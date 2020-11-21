@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const DotsFormHolder = styled.div(
-  ({ topDots }) => css`
+  ({ topDots, styledComponents }) => css`
     margin: 0;
     width: 100%;
     display: flex;
@@ -12,6 +12,7 @@ export const DotsFormHolder = styled.div(
     css`
       flex-direction: column-reverse;
     `};
+    ${styledComponents};
   `
 );
 
@@ -25,7 +26,7 @@ export const DotsHolder = styled.div(
 );
 
 export const DotForm = styled.div(
-  ({ active }) => css`
+  ({ active, styledComponents, activeStyledComponents }) => css`
     margin: 8px;
     width: 10px;
     height: 10px;
@@ -37,6 +38,7 @@ export const DotForm = styled.div(
     &:hover {
       box-shadow: 0 0 4px 2px #4e85af;
     }
+    ${styledComponents};
     ${active &&
     css`
       background: #68beff;
@@ -45,6 +47,7 @@ export const DotForm = styled.div(
         background: #4e85af;
         border-color: #4e85af;
       }
+      ${activeStyledComponents};
     `}
   `
 );
@@ -70,6 +73,7 @@ export const DotsFormTab = styled.div(
     alignItems,
     background,
     borderRadius,
+    styledComponents,
     animation
   }) => css`
     margin: ${margin || 0};
@@ -87,7 +91,7 @@ export const DotsFormTab = styled.div(
     transform-style: preserve-3d;
     transition: all 5s;
     transition-delay: 5s;
-    /* transition: all ${animation}; */
+    transition: all 0.2s;
 
     @keyframes intro {
       from {
@@ -146,11 +150,12 @@ export const DotsFormTab = styled.div(
         transform: perspective(500px) translate3d(-100%, 0, -100px);
       }
     }
+    ${styledComponents};
   `
 );
 
 export const ArrowButton = styled.button(
-  () => css`
+  ({ styledComponents }) => css`
     border: none;
     background: transparent;
     color: #68beff;
@@ -167,5 +172,6 @@ export const ArrowButton = styled.button(
       color: #bcdef7;
       cursor: default;
     }
+    ${styledComponents};
   `
 );

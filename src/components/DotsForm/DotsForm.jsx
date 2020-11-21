@@ -11,6 +11,10 @@ const DotsForm = ({
   children,
   topDots = false,
   removeArrows = false,
+  styledComponents,
+  dotsStyledComponents,
+  dotsActiveStyledComponents,
+  arrowsStyledComponents,
   tabsStyle = {
     width: '98%',
     height: '98%',
@@ -21,7 +25,8 @@ const DotsForm = ({
     justifyContent: 'center',
     alignItems: 'center',
     background: 'transparent',
-    borderRadius: '20px'
+    borderRadius: '20px',
+    styledComponents: ''
   }
 }) => {
   const [activeTab, setActiveTab] = useState(0);
@@ -52,13 +57,15 @@ const DotsForm = ({
     setActiveTab(tabIndex);
   };
   return (
-    <DotsFormHolder topDots={topDots}>
+    <DotsFormHolder topDots={topDots} styledComponents={styledComponents}>
       <DotsHolder>
         {DotsFormTabs.map((dot, index) => (
           <DotForm
             key={index + 'Tab'}
             active={index === activeTab}
             onClick={() => onChangingTab(index)}
+            styledComponents={dotsStyledComponents}
+            activeStyledComponents={dotsActiveStyledComponents}
           />
         ))}
       </DotsHolder>
@@ -69,11 +76,13 @@ const DotsForm = ({
           <ArrowButton
             onClick={() => onChangingTab(activeTab - 1)}
             disabled={activeTab === 0}
+            styledComponents={arrowsStyledComponents}
           >{`<`}</ArrowButton>
           {ActiveTab}
           <ArrowButton
             onClick={() => onChangingTab(activeTab + 1)}
             disabled={activeTab === tabs}
+            styledComponents={arrowsStyledComponents}
           >
             >
           </ArrowButton>
