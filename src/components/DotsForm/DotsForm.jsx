@@ -11,10 +11,19 @@ const DotsForm = ({
   children,
   topDots = false,
   removeArrows = false,
+  removeDots = false,
   styledComponents,
   dotsStyledComponents,
+  dotsStyle = {
+    size: null,
+    color: null,
+    hoverShadowColor: null,
+    activeColor: null,
+    activeHoverColor: null
+  },
   dotsActiveStyledComponents,
   arrowsStyledComponents,
+  arrowsStyle = { color: null, disabledColor: null, hoverColor: null },
   tabsStyle = {
     width: '98%',
     height: '98%',
@@ -58,17 +67,20 @@ const DotsForm = ({
   };
   return (
     <DotsFormHolder topDots={topDots} styledComponents={styledComponents}>
-      <DotsHolder>
-        {DotsFormTabs.map((dot, index) => (
-          <DotForm
-            key={index + 'Tab'}
-            active={index === activeTab}
-            onClick={() => onChangingTab(index)}
-            styledComponents={dotsStyledComponents}
-            activeStyledComponents={dotsActiveStyledComponents}
-          />
-        ))}
-      </DotsHolder>
+      {!removeDots && (
+        <DotsHolder>
+          {DotsFormTabs.map((dot, index) => (
+            <DotForm
+              key={index + 'Tab'}
+              active={index === activeTab}
+              onClick={() => onChangingTab(index)}
+              styledComponents={dotsStyledComponents}
+              activeStyledComponents={dotsActiveStyledComponents}
+              dotsStyle={dotsStyle}
+            />
+          ))}
+        </DotsHolder>
+      )}
       {removeArrows ? (
         ActiveTab
       ) : (
@@ -77,14 +89,18 @@ const DotsForm = ({
             onClick={() => onChangingTab(activeTab - 1)}
             disabled={activeTab === 0}
             styledComponents={arrowsStyledComponents}
-          >{`<`}</ArrowButton>
+            arrowsStyle={arrowsStyle}
+          >
+            {'<'}
+          </ArrowButton>
           {ActiveTab}
           <ArrowButton
             onClick={() => onChangingTab(activeTab + 1)}
             disabled={activeTab === tabs}
             styledComponents={arrowsStyledComponents}
+            arrowsStyle={arrowsStyle}
           >
-            >
+            {'>'}
           </ArrowButton>
         </TabsHolder>
       )}

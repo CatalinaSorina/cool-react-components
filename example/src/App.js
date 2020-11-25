@@ -6,6 +6,7 @@ const App = () => {
   return (
     <div style={{ textAlign: 'center', background: '#2F3336' }}>
       <Form
+        // removeDots
         tabsStyle={{
           height: '75vh',
           styledComponents: `
@@ -14,25 +15,36 @@ const App = () => {
           `
         }}
         styledComponents='background:lightyellow;'
-        dotsStyledComponents={`
-          background:#D4EFDF;
-          border-color:#6E8979;
-          :hover {
-            box-shadow:none;
-            transform: scale(2);
-          }
-        `}
-        dotsActiveStyledComponents='background:#6E8979;box-shadow:none;'
-        arrowsStyledComponents={`
-          color:#FF8585;
-          text-shadow:none;
-          :disabled{
-            color:pink;
-          }
-          :hover:not(:disabled){
-            color:#6E8979;
-          }
-        `}
+        // dotsStyledComponents={`
+        //   background:#D4EFDF;
+        //   border-color:#6E8979;
+        //   :hover {
+        //     box-shadow:none;
+        //     transform: scale(2);
+        //   }
+        // `}
+        // dotsActiveStyledComponents='background:#6E8979;box-shadow:none;'
+        // arrowsStyledComponents={`
+        //   color:#FF8585;
+        //   text-shadow:none;
+        //   :disabled{
+        //     color:pink;
+        //   }
+        //   :hover:not(:disabled){
+        //     color:#6E8979;
+        //   }
+        // `}
+        dotsStyle={{
+          color: '#D4EFDF',
+          hoverShadowColor: '#6E8979',
+          activeColor: '#9ac4aa',
+          activeHoverColor: '#6E8980'
+        }}
+        arrowsStyle={{
+          color: '#FF8585',
+          disabledColor: 'pink',
+          hoverColor: '#6E8979'
+        }}
       >
         <TabForm>
           1.Hello
@@ -41,24 +53,31 @@ const App = () => {
               type='text'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              styledComponents={`
-                font:15px Coursive;
-                &[type='text'] {
-                  color:#6E8979;
-                }
-              `}
+              // styledComponents={`
+              //   font:15px Coursive;
+              //   &[type='text'] {
+              //     color:#6E8979;
+              //   }
+              // `}
+              textEmailStyle={{ textColor: '#6E8979', borderColor: '#6E8979' }}
             />
             <Input
               type='submit'
               disabled={email === ''}
               onClick={TabForm.next}
-              styledComponents={`
-                font:15px Coursive;
-                &[type='submit'] {
-                  background:#6E8979;
-                  border-color:#6E8979;
-                }
-              `}
+              // styledComponents={`
+              //   font:15px Coursive;
+              //   &[type='submit'] {
+              //     background:#6E8979;
+              //     border-color:#6E8979;
+              //   }
+              // `}
+              submitStyle={{
+                color: 'white',
+                background: '#6E8979',
+                hoverBackground: '#9ac4aa',
+                disabledBackground: '#D4EFDF'
+              }}
             />
             {console.log(TabForm)}
           </div>

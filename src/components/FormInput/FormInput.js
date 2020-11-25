@@ -1,7 +1,13 @@
 import styled, { css } from 'styled-components';
 
 const StyledFormInput = styled.input(
-  ({ styledComponents }) => css`
+  ({
+    styledComponents,
+    textEmailStyle,
+    // { textColor = null, borderColor = null, focusColor = null },
+    submitStyle
+    // { color = null, background = null, hoverBackground = null, disabledBackground = null }
+  }) => css`
     padding: 15px 20px;
     text-align: center;
     font: 18px inherit;
@@ -12,12 +18,14 @@ const StyledFormInput = styled.input(
     &[type='email'],
     &[type='text'] {
       width: 300px;
-      color: #4e85af;
-      border: 1px solid #bcdef7;
+      color: ${(textEmailStyle && textEmailStyle.textColor) || '#4e85af'};
+      border: 1px solid
+        ${(textEmailStyle && textEmailStyle.borderColor) || '#bcdef7'};
       transition: all 0.4s;
 
       &:focus {
-        border-color: #4e85af;
+        border-color: ${(textEmailStyle && textEmailStyle.focusColor) ||
+        '#4e85af'};
       }
 
       @media only screen and (max-width: 700px) {
@@ -26,21 +34,25 @@ const StyledFormInput = styled.input(
     }
 
     &[type='submit'] {
-      color: #ffffff;
-      background: #68beff;
-      border: 1px solid #68beff;
+      color: ${(submitStyle && submitStyle.color) || '#ffffff'};
+      background: ${(submitStyle && submitStyle.background) || '#68beff'};
+      border: 1px solid ${(submitStyle && submitStyle.background) || '#68beff'};
       transition: all 0.4s;
 
       &:hover {
         cursor: pointer;
-        background: #4e85af;
-        border-color: #4e85af;
+        background: ${(submitStyle && submitStyle.hoverBackground) ||
+        '#4e85af'};
+        border-color: ${(submitStyle && submitStyle.hoverBackground) ||
+        '#4e85af'};
       }
 
       &:disabled {
         cursor: default;
-        background: #bcdef7;
-        border-color: #bcdef7;
+        background: ${(submitStyle && submitStyle.disabledBackground) ||
+        '#bcdef7'};
+        border-color: ${(submitStyle && submitStyle.disabledBackground) ||
+        '#bcdef7'};
       }
     }
 

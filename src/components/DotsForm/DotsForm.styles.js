@@ -26,26 +26,32 @@ export const DotsHolder = styled.div(
 );
 
 export const DotForm = styled.div(
-  ({ active, styledComponents, activeStyledComponents }) => css`
+  ({
+    active,
+    styledComponents,
+    activeStyledComponents,
+    dotsStyle: { size, color, hoverShadowColor, activeColor, activeHoverColor }
+  }) => css`
     margin: 8px;
-    width: 10px;
+    width: ${size || '10px'};
     height: 10px;
     border-radius: 50%;
-    background: #bcdef7;
-    border: 1px double #bcdef7;
+    background: ${color || '#bcdef7'};
+    border: 1px double ${color || '#bcdef7'};
     cursor: pointer;
     transition: all 0.4s;
     &:hover {
-      box-shadow: 0 0 4px 2px #4e85af;
+      box-shadow: 0 0 4px 2px ${hoverShadowColor || '#4e85af'};
     }
     ${styledComponents};
     ${active &&
     css`
-      background: #68beff;
-      box-shadow: 0 0 4px 1px #68beff;
+      background: ${activeColor || '#68beff'};
+      border-color: ${activeColor || '#68beff'};
+      box-shadow: 0 0 4px 1px ${activeColor || '#68beff'};
       &:hover {
-        background: #4e85af;
-        border-color: #4e85af;
+        background: ${activeHoverColor || '#4e85af'};
+        border-color: ${activeHoverColor || '#4e85af'};
       }
       ${activeStyledComponents};
     `}
@@ -155,10 +161,13 @@ export const DotsFormTab = styled.div(
 );
 
 export const ArrowButton = styled.button(
-  ({ styledComponents }) => css`
+  ({
+    styledComponents,
+    arrowsStyle: { color, disabledColor, hoverColor }
+  }) => css`
     border: none;
     background: transparent;
-    color: #68beff;
+    color: ${color || '#68beff'};
     font: 30px Arial;
     text-shadow: 0 0 8px #bcdef7;
     outline: none;
@@ -166,10 +175,10 @@ export const ArrowButton = styled.button(
     transition: all 0.4s;
     cursor: pointer;
     &:hover:not(:disabled) {
-      color: #4e85af;
+      color: ${hoverColor || ' #4e85af'};
     }
     &:disabled {
-      color: #bcdef7;
+      color: ${disabledColor || ' #bcdef7'};
       cursor: default;
     }
     ${styledComponents};
