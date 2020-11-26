@@ -40,22 +40,6 @@ const DotsForm = ({
 }) => {
   const [activeTab, setActiveTab] = useState(0);
   const [animation, setAnimation] = useState('intro 1s ease-out');
-  const DotsFormTabs =
-    children &&
-    React.Children.toArray(children)
-      .filter((child) => child.type.name === 'TabForm')
-      .map((child, i) => ({
-        ...child,
-        props: {
-          ...tabsStyle,
-          ...child.props,
-          animation: animation,
-          activeTab: i === activeTab,
-          next: () => activeTab < tabs && setActiveTab(activeTab + 1)
-        }
-      }));
-  const tabs = DotsFormTabs.length - 1;
-  const ActiveTab = DotsFormTabs.find((tab) => tab.props.activeTab);
   const onChangingTab = (tabIndex) => {
     let animate;
     if (tabIndex > activeTab) animate = 'enterRight 1s';
@@ -65,6 +49,30 @@ const DotsForm = ({
     setAnimation(animate);
     setActiveTab(tabIndex);
   };
+  const DotsFormTabs =
+    children &&
+    React.Children.toArray(children)
+      .filter((child) => child.type.name === 'TabForm')
+      .map((child, i) => {
+        const newChild = {
+          ...child,
+          props: {
+            ...tabsStyle,
+            blockNext: true,
+            ...child.props,
+            animation: animation,
+            activeTab: i === activeTab,
+            onSubmit: () => activeTab < tabs && onChangingTab(activeTab + 1)
+          }
+        };
+        return newChild;
+      });
+  const tabs = DotsFormTabs.length - 1;
+  const ActiveTab = DotsFormTabs.find((tab) => tab.props.activeTab);
+  const changeTab = (index) =>
+    ActiveTab.props.blockNext
+      ? index <= activeTab && onChangingTab(index)
+      : onChangingTab(index);
   return (
     <DotsFormHolder topDots={topDots} styledComponents={styledComponents}>
       {!removeDots && (
@@ -73,7 +81,7 @@ const DotsForm = ({
             <DotForm
               key={index + 'Tab'}
               active={index === activeTab}
-              onClick={() => onChangingTab(index)}
+              onClick={() => changeTab(index)}
               styledComponents={dotsStyledComponents}
               activeStyledComponents={dotsActiveStyledComponents}
               dotsStyle={dotsStyle}
@@ -95,8 +103,8 @@ const DotsForm = ({
           </ArrowButton>
           {ActiveTab}
           <ArrowButton
-            onClick={() => onChangingTab(activeTab + 1)}
-            disabled={activeTab === tabs}
+            onClick={() => changeTab(activeTab + 1)}
+            disabled={activeTab === tabs || ActiveTab.props.blockNext}
             styledComponents={arrowsStyledComponents}
             arrowsStyle={arrowsStyle}
           >

@@ -3,6 +3,7 @@ import { Input, TabForm, Form } from 'cool-react-components';
 
 const App = () => {
   const [email, setEmail] = useState('');
+
   return (
     <div style={{ textAlign: 'center', background: '#2F3336' }}>
       <Form
@@ -42,45 +43,44 @@ const App = () => {
         }}
         arrowsStyle={{
           color: '#FF8585',
-          disabledColor: 'pink',
+          disabledColor: 'white',
           hoverColor: '#6E8979'
         }}
       >
-        <TabForm>
+        <TabForm blockNext={!email}>
           1.Hello
-          <div>
-            <Input
-              type='text'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              // styledComponents={`
-              //   font:15px Coursive;
-              //   &[type='text'] {
-              //     color:#6E8979;
-              //   }
-              // `}
-              textEmailStyle={{ textColor: '#6E8979', borderColor: '#6E8979' }}
-            />
-            <Input
-              type='submit'
-              disabled={email === ''}
-              onClick={TabForm.next}
-              // styledComponents={`
-              //   font:15px Coursive;
-              //   &[type='submit'] {
-              //     background:#6E8979;
-              //     border-color:#6E8979;
-              //   }
-              // `}
-              submitStyle={{
-                color: 'white',
-                background: '#6E8979',
-                hoverBackground: '#9ac4aa',
-                disabledBackground: '#D4EFDF'
-              }}
-            />
-            {console.log(TabForm)}
-          </div>
+          <Input
+            type='text'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            // styledComponents={`
+            //   font:15px Coursive;
+            //   &[type='text'] {
+            //     color:#6E8979;
+            //   }
+            // `}
+            textEmailStyle={{
+              textColor: '#6E8979',
+              borderColor: '#6E8979'
+            }}
+          />
+          <Input
+            type='submit'
+            disabled={email === ''}
+            // styledComponents={`
+            //   font:15px Coursive;
+            //   &[type='submit'] {
+            //     background:#6E8979;
+            //     border-color:#6E8979;
+            //   }
+            // `}
+            submitStyle={{
+              color: 'white',
+              background: '#6E8979',
+              hoverBackground: '#9ac4aa',
+              disabledBackground: '#D4EFDF'
+            }}
+          />
         </TabForm>
         <TabForm styledComponents='background:rgba(255, 193, 193,0.5);'>
           2.HI

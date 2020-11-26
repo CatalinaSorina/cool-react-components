@@ -66,7 +66,7 @@ export const TabsHolder = styled.div(
   `
 );
 
-export const DotsFormTab = styled.div(
+export const DotsFormTab = styled.form(
   ({
     activeTab,
     width,
