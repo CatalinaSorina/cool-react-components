@@ -30,7 +30,8 @@ export const DotForm = styled.div(
     active,
     styledComponents,
     activeStyledComponents,
-    dotsStyle: { size, color, hoverShadowColor, activeColor, activeHoverColor }
+    dotsStyle: { size, color, hoverShadowColor, activeColor, activeHoverColor },
+    disabled
   }) => css`
     margin: 8px;
     width: ${size || '10px'};
@@ -41,7 +42,8 @@ export const DotForm = styled.div(
     cursor: pointer;
     transition: all 0.4s;
     &:hover {
-      box-shadow: 0 0 4px 2px ${hoverShadowColor || '#4e85af'};
+      box-shadow: ${!disabled &&
+      `0 0 4px 2px ${hoverShadowColor || '#4e85af'}`};
     }
     ${styledComponents};
     ${active &&

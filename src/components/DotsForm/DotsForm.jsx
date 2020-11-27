@@ -72,7 +72,7 @@ const DotsForm = ({
   const changeTab = (index) =>
     ActiveTab.props.blockNext
       ? index <= activeTab && onChangingTab(index)
-      : onChangingTab(index);
+      : index === activeTab + 1 && onChangingTab(index);
   return (
     <DotsFormHolder topDots={topDots} styledComponents={styledComponents}>
       {!removeDots && (
@@ -85,6 +85,11 @@ const DotsForm = ({
               styledComponents={dotsStyledComponents}
               activeStyledComponents={dotsActiveStyledComponents}
               dotsStyle={dotsStyle}
+              disabled={
+                ActiveTab.props.blockNext
+                  ? index > activeTab
+                  : index !== activeTab + 1
+              }
             />
           ))}
         </DotsHolder>
