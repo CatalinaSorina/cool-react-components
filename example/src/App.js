@@ -47,7 +47,12 @@ const App = () => {
           hoverColor: '#6E8979'
         }}
       >
-        <TabForm blockNext={!email}>
+        <TabForm
+          blockNext={!email}
+          onSubmit={() =>
+            email ? console.log('email good') : console.log('no email')
+          }
+        >
           1.Hello
           <Input
             type='text'
@@ -66,7 +71,7 @@ const App = () => {
           />
           <Input
             type='submit'
-            disabled={email === ''}
+            // disabled={email === ''}
             // styledComponents={`
             //   font:15px Coursive;
             //   &[type='submit'] {

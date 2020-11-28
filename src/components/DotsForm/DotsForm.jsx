@@ -54,6 +54,13 @@ const DotsForm = ({
     React.Children.toArray(children)
       .filter((child) => child.type.name === 'TabForm')
       .map((child, i) => {
+        const onSubmitAction = (e) => {
+          e.preventDefault();
+          child.props.onSubmit();
+          !child.props.blockNext &&
+            activeTab < tabs &&
+            onChangingTab(activeTab + 1);
+        };
         const newChild = {
           ...child,
           props: {
@@ -62,7 +69,7 @@ const DotsForm = ({
             ...child.props,
             animation: animation,
             activeTab: i === activeTab,
-            onSubmit: () => activeTab < tabs && onChangingTab(activeTab + 1)
+            onSubmit: onSubmitAction
           }
         };
         return newChild;
