@@ -42,8 +42,13 @@ export const DotForm = styled.div(
     cursor: pointer;
     transition: all 0.4s;
     &:hover {
-      box-shadow: ${!disabled &&
-      `0 0 4px 2px ${hoverShadowColor || '#4e85af'}`};
+      ${disabled
+        ? css`
+            cursor: default;
+          `
+        : css`
+            box-shadow: 0 0 4px 2px ${hoverShadowColor || '#4e85af'};
+          `};
     }
     ${styledComponents};
     ${active &&
@@ -56,7 +61,7 @@ export const DotForm = styled.div(
         border-color: ${activeHoverColor || '#4e85af'};
       }
       ${activeStyledComponents};
-    `}
+    `};
   `
 );
 export const TabsHolder = styled.div(

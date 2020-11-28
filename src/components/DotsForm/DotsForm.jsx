@@ -69,10 +69,12 @@ const DotsForm = ({
       });
   const tabs = DotsFormTabs.length - 1;
   const ActiveTab = DotsFormTabs.find((tab) => tab.props.activeTab);
-  const changeTab = (index) =>
-    ActiveTab.props.blockNext
-      ? index <= activeTab && onChangingTab(index)
-      : index === activeTab + 1 && onChangingTab(index);
+  const isBlocked = (index) =>
+    index === activeTab ||
+    (index > 0
+      ? DotsFormTabs[index - 1].props.blockNext
+      : DotsFormTabs[index].props.blockNext);
+  const changeTab = (index) => !isBlocked(index) && onChangingTab(index);
   return (
     <DotsFormHolder topDots={topDots} styledComponents={styledComponents}>
       {!removeDots && (
@@ -85,11 +87,7 @@ const DotsForm = ({
               styledComponents={dotsStyledComponents}
               activeStyledComponents={dotsActiveStyledComponents}
               dotsStyle={dotsStyle}
-              disabled={
-                ActiveTab.props.blockNext
-                  ? index > activeTab
-                  : index !== activeTab + 1
-              }
+              disabled={isBlocked(index)}
             />
           ))}
         </DotsHolder>
@@ -99,8 +97,8 @@ const DotsForm = ({
       ) : (
         <TabsHolder>
           <ArrowButton
-            onClick={() => onChangingTab(activeTab - 1)}
-            disabled={activeTab === 0}
+            onClick={() => changeTab(activeTab - 1)}
+            disabled={activeTab === 0 || isBlocked(activeTab - 1)}
             styledComponents={arrowsStyledComponents}
             arrowsStyle={arrowsStyle}
           >
@@ -109,7 +107,7 @@ const DotsForm = ({
           {ActiveTab}
           <ArrowButton
             onClick={() => changeTab(activeTab + 1)}
-            disabled={activeTab === tabs || ActiveTab.props.blockNext}
+            disabled={activeTab === tabs || isBlocked(activeTab + 1)}
             styledComponents={arrowsStyledComponents}
             arrowsStyle={arrowsStyle}
           >

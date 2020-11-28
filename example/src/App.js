@@ -82,19 +82,22 @@ const App = () => {
             }}
           />
         </TabForm>
-        <TabForm styledComponents='background:rgba(255, 193, 193,0.5);'>
+        <TabForm
+          styledComponents='background:rgba(255, 193, 193,0.5);'
+          blockNext={false}
+        >
           2.HI
           <Input type='submit' disabled={email === ''} />
           <Input type='submit' disabled={email === ''} />
           <Input type='submit' disabled={email === ''} />
         </TabForm>
-        <TabForm>
+        <TabForm blockNext={false}>
           3.Test
           <Input type='text' placeholder='name' />
           <Input type='text' placeholder='phone' />
           <Input type='text' placeholder='email' />
         </TabForm>
-        <TabForm>
+        <TabForm blockNext={false}>
           4.Test
           <div>
             <Input
@@ -109,8 +112,8 @@ const App = () => {
             <Input type='submit' disabled={email === ''} />
           </div>
         </TabForm>
-        <TabForm>5.Test</TabForm>
-        <TabForm>6.Test</TabForm>
+        <TabForm blockNext={false}>5.Test</TabForm>
+        <TabForm blockNext={false}>6.Test</TabForm>
       </Form>
     </div>
   );
