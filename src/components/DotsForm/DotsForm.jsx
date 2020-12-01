@@ -51,29 +51,27 @@ const DotsForm = ({
   };
   const DotsFormTabs =
     children &&
-    React.Children.toArray(children)
-      .filter((child) => child.type.name === 'TabForm')
-      .map((child, i) => {
-        const onSubmitAction = (e) => {
-          e.preventDefault();
-          child.props.onSubmit();
-          !child.props.blockNext &&
-            activeTab < tabs &&
-            onChangingTab(activeTab + 1);
-        };
-        const newChild = {
-          ...child,
-          props: {
-            ...tabsStyle,
-            blockNext: true,
-            ...child.props,
-            animation: animation,
-            activeTab: i === activeTab,
-            onSubmit: onSubmitAction
-          }
-        };
-        return newChild;
-      });
+    React.Children.toArray(children).map((child, i) => {
+      const onSubmitAction = (e) => {
+        e.preventDefault();
+        child.props.onSubmit();
+        !child.props.blockNext &&
+          activeTab < tabs &&
+          onChangingTab(activeTab + 1);
+      };
+      const newChild = {
+        ...child,
+        props: {
+          ...tabsStyle,
+          blockNext: true,
+          ...child.props,
+          animation: animation,
+          activeTab: i === activeTab,
+          onSubmit: onSubmitAction
+        }
+      };
+      return newChild;
+    });
   const tabs = DotsFormTabs.length - 1;
   const ActiveTab = DotsFormTabs.find((tab) => tab.props.activeTab);
   const isBlocked = (index) =>
