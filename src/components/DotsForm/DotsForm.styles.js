@@ -17,18 +17,18 @@ export const DotsFormHolder = styled.div(
 );
 
 export const DotsHolder = styled.div(
-  () => css`
+  ({ styledComponents }) => css`
     margin: 80px 10px 50px 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    ${styledComponents};
   `
 );
 
 export const DotForm = styled.div(
   ({
     active,
-    styledComponents,
     activeStyledComponents,
     dotsStyle: { size, color, hoverShadowColor, activeColor, activeHoverColor },
     disabled
@@ -50,7 +50,6 @@ export const DotForm = styled.div(
             box-shadow: 0 0 4px 2px ${hoverShadowColor || '#4e85af'};
           `};
     }
-    ${styledComponents};
     ${active &&
     css`
       background: ${activeColor || '#68beff'};
