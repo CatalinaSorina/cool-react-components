@@ -83,13 +83,12 @@ const DotsForm = ({
   return (
     <DotsFormHolder topDots={topDots} styledComponents={styledComponents}>
       {!removeDots && (
-        <DotsHolder>
+        <DotsHolder styledComponents={dotsStyledComponents}>
           {DotsFormTabs.map((dot, index) => (
             <DotForm
               key={index + 'Tab'}
               active={index === activeTab}
               onClick={() => changeTab(index)}
-              styledComponents={dotsStyledComponents}
               activeStyledComponents={dotsActiveStyledComponents}
               dotsStyle={dotsStyle}
               disabled={isBlocked(index)}
